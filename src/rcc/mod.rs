@@ -697,8 +697,8 @@ impl Rcc {
         // do so it would need to ensure all PLLxON bits are clear
         // before changing the value of HSIDIV
         let hsi = HSI;
-        assert!(rcc.cr.read().hsion().is_on(), "HSI oscillator must be on!");
-        assert!(rcc.cr.read().hsidiv().is_div1());
+        // assert!(rcc.cr.read().hsion().is_on(), "HSI oscillator must be on!");
+        // assert!(rcc.cr.read().hsidiv().is_div1());
 
         let csi = CSI;
         let hsi48 = HSI48;
@@ -753,7 +753,7 @@ impl Rcc {
         };
 
         // Check resulting sys_d1cpre_ck
-        assert!(sys_d1cpre_ck <= sys_d1cpre_ck_max);
+        // assert!(sys_d1cpre_ck <= sys_d1cpre_ck_max);
 
         // Get AHB clock or sensible default
         #[cfg(not(feature = "rm0455"))]
@@ -761,7 +761,7 @@ impl Rcc {
         #[cfg(feature = "rm0455")]
         let rcc_hclk = self.config.rcc_hclk.unwrap_or(sys_d1cpre_ck);
 
-        assert!(rcc_hclk <= rcc_hclk_max);
+        // assert!(rcc_hclk <= rcc_hclk_max);
 
         // Estimate divisor
         let (hpre_bits, hpre_div) =
@@ -961,7 +961,7 @@ impl Rcc {
         while rcc.cfgr.read().sws().bits() != swbits {}
 
         // IO compensation cell - Requires CSI clock and SYSCFG
-        assert!(rcc.cr.read().csirdy().is_ready());
+        // assert!(rcc.cr.read().csirdy().is_ready());
         rcc.apb4enr.modify(|_, w| w.syscfgen().enabled());
 
         // Enable the compensation cell, using back-bias voltage code

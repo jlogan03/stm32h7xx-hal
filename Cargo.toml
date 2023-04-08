@@ -47,6 +47,7 @@ log = { version = "0.4.14", optional = true} # see also the dev-dependencies sec
 fdcan = { version = "0.1", optional = true }
 bitflags = { version = "2.0.0" }
 embedded-storage = "0.3"
+static_assertions = "1.1.0"
 
 [dependencies.smoltcp]
 version = "0.9.0"
